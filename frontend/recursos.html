@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="recursos.html" class="active">Recursos</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="page-header">
+            <h2>Gestión de Recursos</h2>
+            <button class="btn-primary" id="btnNuevoRecurso">+ Nuevo Recurso</button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <select id="filtroAula">
+                <option value="">Todas las aulas</option>
+            </select>
+            <select id="filtroEstado">
+                <option value="">Todos los estados</option>
+                <option value="Activo">Activo</option>
+                <option value="Dañado">Dañado</option>
+                <option value="Prestado">Prestado</option>
+            </select>
+            <input type="text" id="buscarRecurso" placeholder="Buscar por tipo o código...">
+        </div>
+
+        <!-- Grid de recursos -->
+        <div id="recursosGrid" class="recursos-grid">
+            <!-- Las tarjetas se generarán dinámicamente -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para crear/editar recurso -->
+<div id="modalRecurso" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Nuevo Recurso</h2>
+        <form id="formRecurso">
+            <div class="form-group">
+                <label for="aulaId">Aula: *</label>
+                <select id="aulaId" name="aula_id" required>
+                    <option value="">Seleccionar aula...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de Recurso: *</label>
+                <input type="text" id="tipo" name="tipo" placeholder="Ej: Proyector, Computadora, Pizarra" required>
+            </div>
+
+            <div class="form-group">
+                <label for="codigo">Código: *</label>
+                <input type="text" id="codigo" name="codigo" placeholder="Ej: PROJ-001" required>
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado: *</label>
+                <select id="estado" name="estado" required>
+                    <option value="Activo">Activo</option>
+                    <option value="Dañado">Dañado</option>
+                    <option value="Prestado">Prestado</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Guardar</button>
+                <button type="button" class="btn-secondary" id="btnCancelar">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para cambiar estado -->
+<div id="modalEstado" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeEstado">&times;</span>
+        <h2>Cambiar Estado del Recurso</h2>
+        <form id="formEstado">
+            <div class="form-group">
+                <label for="nuevoEstado">Nuevo Estado: *</label>
+                <select id="nuevoEstado" name="estado" required>
+                    <option value="Activo">Activo</option>
+                    <option value="Dañado">Dañado</option>
+                    <option value="Prestado">Prestado</option>
+                </select>
+            </div>
++3
+            <div class="form-group" id="aulaDestinoGroup" style="display: none;">
+                <label for="aulaDestino">Aula de Destino: *</label>
+                <select id="aulaDestino" name="aula_destino_id">
+                    <option value="">Seleccionar aula...</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Cambiar Estado</button>
+                <button type="button" class="btn-secondary" id="btnCancelarEstado">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="js/recursos.js"></script>
+</body>
+</html>

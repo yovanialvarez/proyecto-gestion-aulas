@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Daños - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="danos.html" class="active">Daños</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="page-header">
+            <h2>Reportes de Daños</h2>
+            <button class="btn-primary" id="btnReportarDano">+ Reportar Daño</button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <input type="text" id="buscarDano" placeholder="Buscar por recurso o descripción...">
+        </div>
+
+        <!-- Grid de daños -->
+        <div id="danosGrid" class="danos-grid">
+            <!-- Las tarjetas se generarán dinámicamente -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para reportar daño -->
+<div id="modalDano" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Reportar Daño</h2>
+        <form id="formDano" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="resourceId">Recurso Dañado: *</label>
+                <select id="resourceId" name="resource_id" required>
+                    <option value="">Seleccionar recurso...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción del Daño: *</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required placeholder="Describe detalladamente el daño..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Fotografía del Daño:</label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+                <small>Opcional. Formatos: JPG, PNG, GIF. Máximo 5MB</small>
+            </div>
+
+            <div id="previewContainer" style="display: none;">
+                <img id="previewImage" src="" alt="Preview" style="max-width: 100%; max-height: 300px; margin-top: 10px; border-radius: 5px;">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Reportar Daño</button>
+                <button type="button" class="btn-secondary" id="btnCancelar">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para ver detalle -->
+<div id="modalDetalle" class="modal">
+    <div class="modal-content" style="max-width: 700px;">
+        <span class="close" id="closeDetalle">&times;</span>
+        <h2>Detalle del Daño</h2>
+        <div id="detalleContent">
+            <!-- Se llenará dinámicamente -->
+        </div>
+        <div class="form-actions">
+            <button class="btn-secondary" id="btnCerrarDetalle">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/danos.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Actividades - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="danos.html">Daños</a>
+        <a href="logs.html" class="active">Historial</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="page-header">
+            <h2>Historial de Actividades</h2>
+            <button class="btn-primary" id="btnEstadisticas">📊 Ver Estadísticas</button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <select id="filtroTabla">
+                <option value="">Todas las tablas</option>
+                <option value="users">Usuarios</option>
+                <option value="rooms">Aulas</option>
+                <option value="resources">Recursos</option>
+                <option value="reservations">Reservas</option>
+                <option value="damages">Daños</option>
+            </select>
+
+            <select id="filtroAccion">
+                <option value="">Todas las acciones</option>
+                <option value="CREAR">Crear</option>
+                <option value="ACTUALIZAR">Actualizar</option>
+                <option value="ELIMINAR">Eliminar</option>
+                <option value="CAMBIO_ESTADO">Cambio Estado</option>
+                <option value="CANCELAR">Cancelar</option>
+                <option value="COMPLETAR">Completar</option>
+                <option value="REPORTAR_DAÑO">Reportar Daño</option>
+            </select>
+
+            <input type="date" id="filtroFechaInicio" placeholder="Fecha inicio">
+            <input type="date" id="filtroFechaFin" placeholder="Fecha fin">
+
+            <button class="btn-secondary" id="btnAplicarFiltros">Aplicar Filtros</button>
+            <button class="btn-secondary" id="btnLimpiarFiltros">Limpiar</button>
+        </div>
+
+        <!-- Tabla de logs -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Acción</th>
+                    <th>Tabla</th>
+                    <th>Detalles</th>
+                    <th>Fecha y Hora</th>
+                </tr>
+                </thead>
+                <tbody id="logsTableBody">
+                <tr>
+                    <td colspan="6" style="text-align: center;">Cargando historial...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button class="btn-secondary" id="btnCargarMas">Cargar más registros</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de estadísticas -->
+<div id="modalEstadisticas" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+        <span class="close">&times;</span>
+        <h2>Estadísticas del Sistema</h2>
+        <div id="estadisticasContent">
+            <p style="text-align: center;">Cargando estadísticas...</p>
+        </div>
+        <div class="form-actions">
+            <button class="btn-secondary" id="btnCerrarEstadisticas">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/logs.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Aula - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="aulas.html" class="active">Aulas</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <button class="btn-secondary" onclick="history.back()">← Volver</button>
+
+        <div class="aula-detail">
+            <div class="aula-info">
+                <h2 id="aulaNombre">Cargando...</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Módulo:</label>
+                        <span id="aulaModulo">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Estado:</label>
+                        <span id="aulaEstado" class="aula-status">-</span>
+                    </div>
+                    <div class="info-item" id="ocupadoContainer" style="display: none;">
+                        <label>Ocupado por:</label>
+                        <span id="aulaOcupado">-</span>
+                    </div>
+                </div>
+
+                <div class="qr-section">
+                    <h3>Código QR</h3>
+                    <img id="aulaQR" src="" alt="QR Code" style="max-width: 200px;">
+                    <button class="btn-primary" id="btnDescargarQR">Descargar QR</button>
+                </div>
+            </div>
+
+            <!-- Sección de recursos -->
+            <div class="recursos-section">
+                <div class="section-header">
+                    <h3>Recursos del Aula</h3>
+                    <button class="btn-primary" id="btnNuevoRecurso">+ Agregar Recurso</button>
+                </div>
+
+                <div id="recursosContainer">
+                    <p>Cargando recursos...</p>
+                </div>
+            </div>
+
+            <!-- Sección de reservas -->
+            <div class="reservas-section">
+                <div class="section-header">
+                    <h3>Reservar Aula</h3>
+                </div>
+                <button class="btn-primary" onclick="window.location.href='reservas.html?aula=' + getAulaId()">
+                    Hacer una Reserva
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/aula.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="aulas.html" class="active">Aulas</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="page-header">
+            <h2>Gestión de Aulas</h2>
+            <button class="btn-primary" id="btnNuevaAula">+ Nueva Aula</button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <select id="filtroModulo">
+                <option value="">Todos los módulos</option>
+            </select>
+            <select id="filtroEstado">
+                <option value="">Todos los estados</option>
+                <option value="Libre">Libre</option>
+                <option value="Ocupada">Ocupada</option>
+            </select>
+        </div>
+
+        <!-- Grid de aulas -->
+        <div id="aulasGrid" class="aulas-grid">
+            <!-- Las tarjetas se generarán dinámicamente -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para crear/editar aula -->
+<div id="modalAula" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Nueva Aula</h2>
+        <form id="formAula">
+            <div class="form-group">
+                <label for="nombre">Nombre del Aula:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="modulo">Módulo:</label>
+                <input type="text" id="modulo" name="modulo" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Guardar</button>
+                <button type="button" class="btn-secondary" id="btnCancelar">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="js/aulas.js"></script>
+</body>
+</html>

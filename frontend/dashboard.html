@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="menu">
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="reservas.html">Reservas</a>
+        <a href="danos.html">Daños</a>
+        <a href="logs.html" id="menuLogs">Historial</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <div class="content">
+        <!-- Tarjetas de resumen -->
+        <div class="stats-grid">
+            <div class="stat-card-dashboard">
+                <div class="stat-icon">🏫</div>
+                <div class="stat-info">
+                    <h3>Aulas Totales</h3>
+                    <p class="stat-number" id="totalAulas">-</p>
+                    <small id="aulasLibres">- libres</small>
+                </div>
+            </div>
+
+            <div class="stat-card-dashboard">
+                <div class="stat-icon">📦</div>
+                <div class="stat-info">
+                    <h3>Recursos</h3>
+                    <p class="stat-number" id="totalRecursos">-</p>
+                    <small id="recursosActivos">- activos</small>
+                </div>
+            </div>
+
+            <div class="stat-card-dashboard">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                    <h3>Reservas Activas</h3>
+                    <p class="stat-number" id="reservasActivas">-</p>
+                    <small id="totalReservas">- totales</small>
+                </div>
+            </div>
+
+            <div class="stat-card-dashboard">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-info">
+                    <h3>Daños Reportados</h3>
+                    <p class="stat-number" id="totalDanos">-</p>
+                    <small>Pendientes de atención</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="charts-grid">
+            <!-- Estado de Aulas -->
+            <div class="chart-card">
+                <h3>Estado de Aulas</h3>
+                <div id="chartAulas" class="chart-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Estado de Recursos -->
+            <div class="chart-card">
+                <h3>Estado de Recursos</h3>
+                <div id="chartRecursos" class="chart-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Usuarios por Rol -->
+            <div class="chart-card" id="chartUsuariosCard">
+                <h3>Usuarios por Rol</h3>
+                <div id="chartUsuarios" class="chart-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Reservas por Estado -->
+            <div class="chart-card">
+                <h3>Reservas por Estado</h3>
+                <div id="chartReservas" class="chart-content">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Actividad Reciente -->
+        <div class="activity-section">
+            <h3>Actividad Reciente</h3>
+            <div class="activity-grid">
+                <!-- Últimas Reservas -->
+                <div class="activity-card">
+                    <h4>📅 Últimas Reservas</h4>
+                    <div id="ultimasReservas" class="activity-list">
+                        <p style="text-align: center; color: #666;">Cargando...</p>
+                    </div>
+                </div>
+
+                <!-- Últimos Daños -->
+                <div class="activity-card">
+                    <h4>⚠️ Últimos Daños Reportados</h4>
+                    <div id="ultimosDanos" class="activity-list">
+                        <p style="text-align: center; color: #666;">Cargando...</p>
+                    </div>
+                </div>
+
+                <!-- Últimas Acciones (Solo Admin) -->
+                <div class="activity-card" id="actividadCard" style="display: none;">
+                    <h4>📋 Últimas Acciones del Sistema</h4>
+                    <div id="ultimaActividad" class="activity-list">
+                        <p style="text-align: center; color: #666;">Cargando...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

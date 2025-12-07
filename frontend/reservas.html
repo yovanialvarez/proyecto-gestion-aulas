@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1>Sistema de Gestión de Aulas</h1>
+        <div class="user-info">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Menú de navegación -->
+    <div class="menu">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="aulas.html">Aulas</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="reservas.html" class="active">Reservas</a>
+        <a href="usuarios.html" id="menuUsuarios">Usuarios</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="page-header">
+            <h2>Sistema de Reservas</h2>
+            <button class="btn-primary" id="btnNuevaReserva">+ Nueva Reserva</button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <select id="filtroAula">
+                <option value="">Todas las aulas</option>
+            </select>
+            <select id="filtroEstado">
+                <option value="">Todos los estados</option>
+                <option value="Activa">Activa</option>
+                <option value="Completada">Completada</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+            <input type="date" id="filtroFecha" placeholder="Filtrar por fecha">
+        </div>
+
+        <!-- Tabla de reservas -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Aula</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Hora Inicio</th>
+                    <th>Hora Fin</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="reservasTableBody">
+                <tr>
+                    <td colspan="8" style="text-align: center;">Cargando reservas...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para crear/editar reserva -->
+<div id="modalReserva" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Nueva Reserva</h2>
+        <form id="formReserva">
+            <div class="form-group">
+                <label for="roomId">Aula: *</label>
+                <select id="roomId" name="room_id" required>
+                    <option value="">Seleccionar aula...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha: *</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="horaInicio">Hora Inicio: *</label>
+                    <input type="time" id="horaInicio" name="hora_inicio" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="horaFin">Hora Fin: *</label>
+                    <input type="time" id="horaFin" name="hora_fin" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="grupoWhatsapp">Grupo WhatsApp (opcional):</label>
+                <input type="url" id="grupoWhatsapp" name="grupo_whatsapp" placeholder="https://chat.whatsapp.com/...">
+                <small>Link del grupo de WhatsApp para coordinar</small>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Guardar Reserva</button>
+                <button type="button" class="btn-secondary" id="btnCancelar">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para ver detalles -->
+<div id="modalDetalle" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeDetalle">&times;</span>
+        <h2>Detalle de la Reserva</h2>
+        <div id="detalleContent">
+            <!-- Se llenará dinámicamente -->
+        </div>
+        <div class="form-actions">
+            <button class="btn-secondary" id="btnCerrarDetalle">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/reservas.js"></script>
+</body>
+</html>
