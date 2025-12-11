@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path')
+const cron = require('node-cron');
 require('dotenv').config();
 
 const authRoutes = require('./routes/authRoutes');
@@ -11,6 +12,8 @@ const reservationsRoutes = require('./routes/reservationsRoutes');
 const damagesRoutes = require('./routes/damagesRoutes');
 const logsRoutes = require('./routes/logsRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const schedulerRoutes = require('./routes/schedulerRoutes');
+const { completarReservasVencidas } = require('./controllers/schedulerController');
 
 const app = express();
 
@@ -33,10 +36,16 @@ app.use('/api/reservations', reservationsRoutes);
 app.use('/api/damages', damagesRoutes);
 app.use('/api/logs', logsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/scheduler', schedulerRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
     res.json({ message: 'API funcionando correctamente' });
+});
+
+cron.schedule('*/2 * * * *', async () => {
+    console.log('Ejecutando revisión de reservas vencidas...');
+    await completarReservasVencidas();
 });
 
 // Puerto
@@ -44,4 +53,5 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log('Scheduler de liberación de aulas activo (cada 15 minutos)');
 });
